@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/88bd62ac48.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        .paint-canvas {
+          border: 1px black solid;
+          display: block;
+            max-width: 90vw;
+            width: 500px;
+        }
+
+        .color-picker {
+          display: none;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+        .input-file{
+            background-color: #f8f9fc;
+            border: 1px solid #e2e9f3;
+            border-radius: 4px;
+            height: 40px;
+            width: 500px;
+            color: #565A90;
+        }
+        .form-input{
+            padding: 10px;
+            box-sizing: border-box;
+            border: 0.2px solid black;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 500px;
+            margin-top: 0;
+            max-width: 90vw;
+        }
+        .input-file::file-selector-button{
+            border: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #595ef1bd;
+            border: 1px solid #595ef1bd;
+            height: 40px;
+            cursor: pointer;
+            transition: all .25s ease-in;
+            cursor: pointer;
+        }
+        .input-file::file-selector-button:hover{
+            background-color: #fff;
+            color: #565A90;
+            transition: all .25s ease-in;
+        }
+
+        h1 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            font-size: 2.5rem;
+        }
+        body{
+            font-family: "Open Sans", sans-serif;
+            font-weight: 500;
+        }
+        .general-button{
+            background: rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            color: black;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+        .form-button{
+            background: rgba(76, 0, 255, 1);
+            padding: 10px;
+            color: white;
+            width: 500px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .form-button:hover{
+            background: rgba(76, 0, 255, 0.8);
+        }
+    </style>
+</head>
+<body style="padding: 0; margin: 0">
+<div style="border-bottom: 0.2px solid black; width: 100%; height: 75px">
+    <div style="" onclick="document.location = '/dashboard'">
+        <img src="/static/logo.png" alt="" style="width: 50px; float: left; margin-left: 5%; margin-bottom: 10px; margin-top: 10px; display: inline-block">
+        <span style="display: inline-block; vertical-align: top; margin-top: 22px; float: left; margin-left: 10px">ebelgem</span>
+    </div>
+    <button onclick="nextStep()" class="general-button" style="display: inline-block; float:right; margin-top: 10px; margin-right: 5%; background: rgba(76, 0, 255, 1); color: white">
+        Onayla
+    </button>
+    <button onclick="window.open('/privacy')" class="general-button" style="display: inline-block; float:right; margin-top: 10px; margin-right: 2%">
+        Gizlilik Sözleşmesi
+    </button>
+</div>
+<br>
+<center id="ebelgem-step-1">
+    <iframe style="display: inline-block; width: 70%; height: 80vh; border: 0.2px solid rgba(0, 0, 0, 0.2)" src="/documents/{{ signature.document.document_uuid }}" id="file-preview"></iframe>
+</center>
+<div id="ebelgem-step-2" style="display: none">
+    <form method="post" enctype="multipart/form-data" style="text-align: left; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; width: fit-content; height: fit-content; overflow-y: auto">
+        <h1 style="font-weight: 300; font-size: 2rem">Bilgilerini Gir Sözleşmeyi Onayla</h1>
+        <input type="text" class="form-input" name="email" value="{{ signature.email }}" disabled>
+        <br>
+        <label for="name-input" style="font-size: 12px; font-weight: 300; text-align: left; margin-top: 10px; margin-bottom: 0;">İsim</label>
+        <br>
+        <input id="name-input" type="text" class="form-input" name="name">
+        <br>
+        <label for="surname-input" style="font-size: 12px; font-weight: 300; text-align: left; margin-top: 10px; margin-bottom: 0;">Soyisim</label>
+        <br>
+        <input id="surname-input" type="text" class="form-input" name="surname">
+        <br>
+        <label for="tckimlik-input" style="font-size: 12px; font-weight: 300; text-align: left; margin-top: 10px; margin-bottom: 0;">T.C. Kimlik No</label>
+        <br>
+        <input id="tckimlik-input" type="text" class="form-input" name="tc_kimlik">
+        <br>
+        <label for="dob-input" style="font-size: 12px; font-weight: 300; text-align: left; margin-top: 10px; margin-bottom: 0;">Doğum Yılı</label>
+        <br>
+        <input id="dob-input" type="text" class="form-input" name="dob">
+        <br>
+        <p style="font-weight: 300; font-size: 12px">İmza</p>
+        <input type="color"  class="js-color-picker  color-picker">
+        <input type="range" class="js-line-range" min="1" max="72" style="display: none" value="1">
+        <div style="display: none"><label class="js-range-value">1</label>Px</div>
+        <canvas class="js-paint  paint-canvas" width="500px" height="100px"></canvas>
+
+    </form>
+</div>
+<script>
+    const paintCanvas = document.querySelector( '.js-paint' );
+    const context = paintCanvas.getContext( '2d' );
+    context.lineCap = 'round';
+
+    const colorPicker = document.querySelector( '.js-color-picker');
+
+    colorPicker.addEventListener( 'change', event => {
+        context.strokeStyle = event.target.value;
+    } );
+
+    const lineWidthRange = document.querySelector( '.js-line-range' );
+    const lineWidthLabel = document.querySelector( '.js-range-value' );
+
+    lineWidthRange.addEventListener( 'input', event => {
+        const width = event.target.value;
+        lineWidthLabel.innerHTML = width;
+        context.lineWidth = width;
+    } );
+
+    let x = 0, y = 0;
+    let isMouseDown = false;
+
+    const stopDrawing = () => { isMouseDown = false; }
+    const startDrawing = event => {
+       isMouseDown = true;
+       [x, y] = [event.offsetX, event.offsetY];
+    }
+    const drawLine = event => {
+        if ( isMouseDown ) {
+            const newX = event.offsetX;
+            const newY = event.offsetY;
+            context.beginPath();
+            context.moveTo( x, y );
+            context.lineTo( newX, newY );
+            context.stroke();
+            //[x, y] = [newX, newY];
+            x = newX;
+            y = newY;
+        }
+    }
+
+    paintCanvas.addEventListener( 'mousedown', startDrawing );
+    paintCanvas.addEventListener( 'mousemove', drawLine );
+    paintCanvas.addEventListener( 'mouseup', stopDrawing );
+    paintCanvas.addEventListener( 'mouseout', stopDrawing );
+    function nextStep(){
+        if(document.getElementById("ebelgem-step-1").style.display == "none"){
+            document.getElementsByTagName("form")[0].submit()
+        }
+        document.getElementById("ebelgem-step-1").style.display = "none";
+        document.getElementById("ebelgem-step-2").style.display = "block";
+    }
+</script>
+
+</body>
+</html>

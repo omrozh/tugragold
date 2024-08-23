@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+        h1 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            font-size: 2.5rem;
+        }
+        body{
+            font-family: "Open Sans", sans-serif;
+            font-weight: 500;
+        }
+        .document-preview{
+            border: .2px solid rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            width: fit-content;
+            display: inline-block;
+            margin-left: 10px;
+            height: 300px;
+            margin-top: 15px
+        }
+        .general-button{
+            background: rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            color: black;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="padding: 0; margin: 0; background: rgba(0, 0, 0, 0.025)">
+<div style="border-bottom: 0.2px solid black; width: 100%; height: 75px; background: white">
+    <div style="" onclick="document.location = '/dashboard'">
+        <img src="/static/logo.png" alt="" style="width: 50px; float: left; margin-left: 5%; margin-bottom: 10px; margin-top: 10px; display: inline-block">
+        <span style="display: inline-block; vertical-align: top; margin-top: 22px; float: left; margin-left: 10px">ebelgem</span>
+    </div>
+    <button onclick="document.location = '/logout'" class="general-button" style="display: inline-block; float:right; margin-top: 10px; margin-right: 5%; background: rgba(76, 0, 255, 1); color: white">
+        Çıkış Yap
+    </button>
+    <button onclick="document.location = '/#pricing'" class="general-button" style="display: inline-block; float:right; margin-top: 10px; margin-right: 2%">
+        Planları İncele
+    </button>
+</div>
+<div>
+  <div style="border: 0.1px solid rgba(0, 0, 0, 0.1); padding: 20px; background: white; margin: 50px 50px 10px;">
+      <p>İşyeri Adı</p>
+      <p style="font-weight: 300">{{ user.company_name }}</p>
+  </div>
+  <div style="border: 0.1px solid rgba(0, 0, 0, 0.1); padding: 20px; background: white; margin: 10px 50px;">
+      <p>E-Posta Adresi</p>
+      <p style="font-weight: 300">{{ user.email }}</p>
+  </div>
+  <div style="border: 0.1px solid rgba(0, 0, 0, 0.1); padding: 20px; background: white; margin: 10px 50px;">
+      <p>Kullanım</p>
+      <p style="font-weight: 300">{{ user.usage }}/20</p>
+  </div>
+</div>
+</body>
+</html>

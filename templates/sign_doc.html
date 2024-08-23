@@ -41,7 +41,12 @@
             .form-input{
                 margin-left: 5vw;
             }
-
+            canvas{
+                display: none!important;
+            }
+            #canvas-label{
+                display: none!important;
+            }
             label{
                 margin-left: 5vw;
             }
@@ -200,13 +205,9 @@
     }
 
     paintCanvas.addEventListener( 'mousedown', startDrawing );
-    paintCanvas.addEventListener( 'touchstart', startDrawing );
     paintCanvas.addEventListener( 'mousemove', drawLine );
-    paintCanvas.addEventListener( 'touchmove', drawLine );
     paintCanvas.addEventListener( 'mouseup', stopDrawing );
-    paintCanvas.addEventListener( 'touchend', stopDrawing );
     paintCanvas.addEventListener( 'mouseout', stopDrawing );
-
     function nextStep(){
         if(document.getElementById("ebelgem-step-1").style.display == "none"){
             document.getElementsByTagName("form")[0].submit()

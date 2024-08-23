@@ -233,6 +233,9 @@ def profile():
 @app.route("/cancel/<doc_uuid>")
 def cancel_doc(doc_uuid):
     doc = Document.query.filter_by(document_uuid=doc_uuid).first()
+    print(doc.owner)
+    print(current_user.id)
+    print(doc.signature.status)
     if not doc.owner == current_user.id:
         return flask.redirect("/dashboard")
     if doc.signature.status == "İmzalandı":

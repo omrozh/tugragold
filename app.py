@@ -165,6 +165,8 @@ def signin():
 
 @app.route("/dashboard")
 def dashboard():
+    if not current_user.is_authenticated:
+        return flask.redirect("/")
     documents = current_user.owned_docs
     return flask.render_template("dashboard.html", documents=documents, user=current_user)
 

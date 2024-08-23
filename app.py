@@ -6,6 +6,8 @@ from id_verification import verify_id
 import datetime
 from flask_migrate import Migrate
 from flask_mail import Mail, Message
+import os
+from pdf_to_images import process_pdf
 
 
 app = flask.Flask(__name__)
@@ -187,8 +189,11 @@ def upload_doc():
 
         new_requested_signature = Signature(email=values.get("email"), signature_uuid=str(uuid4()),
                                             document_fk=new_document.id)
+
         db.session.add(new_requested_signature)
         db.session.commit()
+
+        process_pdf(new_document.document_uuid)
 
         send_doc_email(signature=new_requested_signature)
 
@@ -255,7 +260,13 @@ def view_doc(doc_uuid):
 
 @app.route("/documents/<doc_uuid>")
 def documents(doc_uuid):
-    return flask.send_file("documents/" + doc_uuid + ".pdf")
+    doc_images = os.listdir(f"documents/{doc_uuid}")
+    return flask.render_template("docview.html", doc_images=doc_images, doc_uuid=doc_uuid)
+
+
+@app.route("/documenthost/<doc_uuid>/<img_name>")
+def documenthost(doc_uuid, img_name):
+    return flask.send_file(f"documents/{doc_uuid}/{img_name}")
 
 
 @app.route("/static/<filename>")

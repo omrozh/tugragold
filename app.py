@@ -105,7 +105,7 @@ class Signature(db.Model):
 
 
 def notify_signature(document):
-    with open("emails/send_doc.html", "r") as email:
+    with open("emails/notify_success.html", "r") as email:
         msg = Message(
             subject=f"{document.document_name} Tamamlandı",
             sender="omer.o@modularsoftware.net",
@@ -116,7 +116,7 @@ def notify_signature(document):
 
 
 def send_doc_email(signature):
-    with open("emails/notify_success.html", "r") as email:
+    with open("emails/send_doc.html", "r") as email:
         msg = Message(
             subject=f"{signature.document.owner.company_name} size imzalamanız için bir doküman iletti.",
             sender="omer.o@modularsoftware.net",

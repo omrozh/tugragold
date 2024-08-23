@@ -199,6 +199,8 @@ def upload_doc():
 @app.route("/sign_doc/<signature_uuid>", methods=["POST", "GET"])
 def sign_doc(signature_uuid):
     signature = Signature.query.filter_by(signature_uuid=signature_uuid).first()
+    if not signature.document:
+        return flask.render_template("deleted_doc.html")
     if flask.request.method == "POST":
         values = flask.request.values
 
@@ -227,6 +229,17 @@ def sign_doc(signature_uuid):
 def profile():
     return flask.render_template("profile.html", user=current_user)
 
+
+@app.route("/cancel/<doc_uuid>")
+def cancel_doc(doc_uuid):
+    doc = Document.query.filter_by(doc_uuid=doc_uuid).first()
+    if not doc.owner == current_user.id:
+        return flask.redirect("/dashboard")
+    if doc.signature.status == "İmzalandı":
+        return flask.redirect("/dashboard")
+    db.session.delete(doc)
+    db.session.commit()
+    return flask.redirect("/dashboard")
 
 
 @app.route("/logout")

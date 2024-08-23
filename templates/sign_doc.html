@@ -42,7 +42,10 @@
                 margin-left: 5vw;
             }
             canvas{
-                display: none;
+                display: none!important;
+            }
+            #canvas-label{
+                display: none!important;
             }
             label{
                 margin-left: 5vw;
@@ -143,7 +146,7 @@
         <br>
         <input id="dob-input" type="text" class="form-input" name="dob">
         <br>
-        <p style="font-weight: 300; font-size: 12px">İmza</p>
+        <p style="font-weight: 300; font-size: 12px" id="canvas-label">İmza</p>
         <input type="color"  class="js-color-picker  color-picker">
         <input type="range" class="js-line-range" min="1" max="72" style="display: none" value="1">
         <div style="display: none"><label class="js-range-value">1</label>Px</div>

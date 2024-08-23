@@ -106,7 +106,7 @@
         <p>İmzalama Tarihi: <span style="font-weight: 300">{{ document.signature.signature_date }}</span></p>
         <p>İmzalayan Eposta: <span style="font-weight: 300">{{ document.signature.email }}</span></p>
       {% else %}
-        <button type="button" onclick="document.location = '/cancel/{{ document.document_uuid }}'" class="general-button" style="display: inline-block; float:right; margin-top: 10px; margin-right: 5%; background: rgb(255,63,63); color: white">
+        <button type="button" onclick="document.location = '/cancel/{{ document.document_uuid }}'" class="general-button" style="display: inline-block; float:right; margin-right: 5%; background: rgb(255,63,63); color: white">
             Dokümanı Sil
         </button>
         <p>Henüz İmzalanmadı</p>

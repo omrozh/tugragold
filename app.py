@@ -204,6 +204,8 @@ def upload_doc():
 @app.route("/sign_doc/<signature_uuid>", methods=["POST", "GET"])
 def sign_doc(signature_uuid):
     signature = Signature.query.filter_by(signature_uuid=signature_uuid).first()
+    if not signature:
+        return flask.render_template("deleted_doc.html")
     if not signature.document:
         return flask.render_template("deleted_doc.html")
     if flask.request.method == "POST":

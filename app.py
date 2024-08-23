@@ -242,6 +242,7 @@ def cancel_doc(doc_uuid):
         return flask.redirect("/dashboard")
     if doc.signature.status == "İmzalandı":
         return flask.redirect("/dashboard")
+    db.session.delete(doc.signature)
     db.session.delete(doc)
     db.session.commit()
     return flask.redirect("/dashboard")

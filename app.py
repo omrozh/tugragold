@@ -210,7 +210,7 @@ def sign_doc(signature_uuid):
         values = flask.request.values
 
         if not verify_id(values.get("tc_kimlik"), values.get("name"), values.get("surname"), values.get("dob")):
-            return flask.render_template("cannot_verify_id.html")
+            return flask.render_template("cannot_verify_id.html", signature_uuid=signature.signature_uuid)
 
         new_signature = Signature.query.filter_by(signature_uuid=signature_uuid).first()
 

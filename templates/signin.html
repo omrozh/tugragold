@@ -72,6 +72,22 @@
     </style>
 </head>
 <body style="padding: 0; margin: 0; background: rgb(247, 246, 247);">
+<center id="not-available-on-mobile" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: white; z-index: 9999; font-size: 1.5rem; display: none">
+    <br>
+    <h1>E-Belgem'i Tercih Ettiğiniz için Teşekkürler!</h1>
+    <img src="https://cdn.devdojo.com/images/december2020/productivity.png" style="height: 40vh;" alt="">
+    <p style="width: 80vw; font-size: 16px; font-weight: 300">
+        Sözleşme gönderme ve kontrol paneli fonksiyonları mobil cihazlarda desteklenmemektedir. Lütfen bu işlemler için masaüstü veya dizüstü bilgisayar kullanın. Anlayışınız için teşekkür ederiz.
+    </p>
+    <button class="form-button" style="max-width: 90vw" onclick="document.location = '/'">
+        Anasayfa
+    </button>
+</center>
+<script>
+    if(window.innerHeight > window.innerWidth){
+        document.getElementById("not-available-on-mobile").style.display = "block"
+    }
+</script>
 <div style="border-bottom: 0.2px solid black; width: 100%; height: 75px; background: white">
     <div style="" onclick="document.location = '/dashboard'">
         <img src="/static/logo.png" alt="" style="width: 50px; float: left; margin-left: 5%; margin-bottom: 10px; margin-top: 10px; display: inline-block">

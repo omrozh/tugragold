@@ -116,14 +116,12 @@
 </div>
 <br>
 <center id="ebelgem-step-1">
-    <embed style="display: inline-block; width: 100%; height: 80vh; border: 0.2px solid rgba(0, 0, 0, 0.2)" src="/documents/{{ signature.document.document_uuid }}?zoom=fit-page" id="file-preview" type="application/pdf">
-    <div style="position: fixed; background: white; display: none;" id="mobile-input" >
-        <button onclick="nextStep()" class="general-button" style="display: block; float:right; margin-top: 10px; margin-bottom: 20px; background: rgba(76, 0, 255, 1); color: white; width: 95vw; margin-left: 2.5vw">
+    <div id="mobile-input" >
+        <button onclick="nextStep()" class="general-button" style="display: block; float:right; margin-top: 10px; background: rgba(76, 0, 255, 1); color: white; width: 95vw; margin-left: 2.5vw">
             Onayla
         </button>
-        <br>
-        <br>
     </div>
+    <embed style="display: inline-block; width: 100%; height: 80vh; border: 0.2px solid rgba(0, 0, 0, 0.2)" src="/documents/{{ signature.document.document_uuid }}?zoom=fit-page" id="file-preview" type="application/pdf">
 </center>
 <div id="ebelgem-step-2" style="display: none">
     <form method="post" enctype="multipart/form-data" style="text-align: left; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; width: fit-content; height: fit-content; overflow-y: auto">

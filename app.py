@@ -21,8 +21,8 @@ migrate = Migrate(app, db)
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'omer.o@modularsoftware.net'
-app.config['MAIL_PASSWORD'] = 'xfgy xbyd ccjj xohr'
+app.config['MAIL_USERNAME'] = 'bilgi@ebelgem.net'
+app.config['MAIL_PASSWORD'] = 'vrtn kmni oeji asuo'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 
@@ -108,7 +108,7 @@ def notify_signature(document):
     with open("emails/notify_success.html", "r") as email:
         msg = Message(
             subject=f"{document.document_name} Tamamlandı",
-            sender="omer.o@modularsoftware.net",
+            sender="bilgi@ebelgem.net",
             recipients=[document.signature.email, document.owner.email]
         )
         msg.html = email.read().replace("%docname%", document.document_name)
@@ -119,7 +119,7 @@ def send_doc_email(signature):
     with open("emails/send_doc.html", "r") as email:
         msg = Message(
             subject=f"{signature.document.owner.company_name} size imzalamanız için bir doküman iletti.",
-            sender="omer.o@modularsoftware.net",
+            sender="bilgi@ebelgem.net",
             recipients=[signature.email]
         )
         msg.html = email.read().replace("%company%", signature.document.owner.company_name).replace("%signature_uuid%", signature.signature_uuid)

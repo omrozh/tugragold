@@ -260,7 +260,7 @@ def view_doc(doc_uuid):
 
 @app.route("/documents/<doc_uuid>")
 def documents(doc_uuid):
-    doc_images = os.listdir(f"documents/{doc_uuid}")
+    doc_images = sorted(os.listdir(f"documents/{doc_uuid}"))
     return flask.render_template("docview.html", doc_images=doc_images, doc_uuid=doc_uuid)
 
 

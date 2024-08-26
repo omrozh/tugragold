@@ -127,9 +127,15 @@
     </button>
 </div>
 <center id="mobile-input" style="padding: 10px; box-sizing: border-box; display: none">
+    {% if already_signed %}
+    <button class="general-button" style="display: block; margin-bottom: 10px; margin-top: 10px; background: rgb(112, 112, 112); color: white; width: 100%;">
+        Onaylandı
+    </button>
+    {% else %}
     <button onclick="nextStep()" class="general-button" style="display: block; margin-bottom: 10px; margin-top: 10px; background: rgba(76, 0, 255, 1); color: white; width: 100%;">
         Onayla
     </button>
+    {% endif %}
 </center>
 <center id="ebelgem-step-1">
     <iframe style="display: inline-block; width: 100%; height: 80vh; border: 0.2px solid rgba(0, 0, 0, 0.2)" src="/documents/{{ signature.document.document_uuid }}?zoom=fit-page" id="file-preview"></iframe>

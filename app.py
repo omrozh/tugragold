@@ -113,7 +113,7 @@ def notify_signature(document):
             sender="bilgi@ebelgem.net",
             recipients=[document.signature.email, document.owner.email]
         )
-        msg.html = email.read().replace("%docname%", document.document_name)
+        msg.html = email.read().replace("%docname%", document.document_name).replace("%signature_uuid%", document.signature.signature_uuid)
         mail.send(message=msg)
 
 

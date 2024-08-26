@@ -229,7 +229,7 @@ def sign_doc(signature_uuid):
 
         return flask.render_template("thanks.html")
 
-    return flask.render_template("sign_doc.html", signature=signature)
+    return flask.render_template("sign_doc.html", signature=signature, already_signed=signature.status=="İmzalandı")
 
 
 @app.route("/profile")
